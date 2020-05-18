@@ -51,3 +51,11 @@ jobs:
           yarn lint
           yarn test --ci
           yarn depcheck
+      - name: "Run PGLint checks"
+        uses: pglint/action@master
+        env:
+          DATABASE_URL: postgres://postgres:postgres@localhost/graphile_starter
+          PGLINT_TOKEN: ${{ secrets.PGLINT_TOKEN }}
+        with:
+          project: graphile/graphile-starter
+          pass-on-no-token: true
